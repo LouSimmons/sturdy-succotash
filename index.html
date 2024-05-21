@@ -8,7 +8,6 @@
     <style>
         #board {
             width: 400px;
-            height: 400px;
             margin: 20px auto;
         }
         #pgnInput {
@@ -27,11 +26,10 @@
     <textarea id="pgnInput" rows="4" placeholder="Paste PGN here"></textarea>
     <button id="loadPGN">Load PGN</button>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.13.1/chess.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Debugging: Log message when DOM content is loaded
             console.log('DOM fully loaded and parsed');
 
             var board = Chessboard('board', {
@@ -40,7 +38,6 @@
                 sparePieces: true
             });
 
-            // Debugging: Check if board is initialized
             console.log('Chessboard initialized', board);
 
             var game = new Chess();
