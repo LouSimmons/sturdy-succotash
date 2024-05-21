@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple PGN Viewer</title>
+    <style>
+        #pgn {
+            width: 300px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <textarea id="pgn" placeholder="Enter your PGN here"></textarea>
+    <button onclick="loadPGN()">Load PGN</button>
+    <div id="chessboard"></div>
+    <button onclick="prevMove()">Previous</button>
+    <button onclick="nextMove()">Next</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chessboard.js/1.0.0/chessboard.min.js"></script>
+    <script>
+        var board = Chessboard('chessboard');
+        var game = new Chess();
+        var pgn, moves, currentMove;
+
+        function loadPGN() {
+            pgn = document.getElementById('pgn').value;
+            game.load_pgn(pgn);
+            moves = game.history();
+            currentMove = 0;
+            board.position(game.fen());
+        }
+
+        function nextMove() {
+            if (currentMove < moves.length) {
+                game.move(moves[currentMove]);
+                board.position(game.fen());
+                currentMove++;
+            }
+        }
+
+        function prevMove() {
+            if (currentMove > 0) {
+                game.undo();
+                board.position(game.fen());
+                currentMove--;
+            }
+        }
+    </script>
+</body>
+</html>
