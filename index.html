@@ -3,35 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chesstempo PGN Viewer</title>
-    <script src="https://chesstempo.com/pgnviewer/pgnviewer.js"></script>
-    <link rel="stylesheet" href="https://chesstempo.com/pgnviewer/pgnviewer.css">
+    <title>Chess PGN Viewer</title>
+    <link rel="stylesheet" href="https://unpkg.com/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css">
+    <style>
+        #board {
+            width: 400px;
+            margin: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Chesstempo PGN Viewer</h1>
+    <h1>Chess PGN Viewer</h1>
 
     <textarea id="pgnInput" rows="10" cols="50" placeholder="Paste your PGN here..."></textarea>
     <br>
     <button onclick="loadPGN()">Load PGN</button>
 
-    <div id="board" style="width: 600px;"></div>
+    <div id="board"></div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+    <script src="https://unpkg.com/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>
     <script>
-        let viewer;
+        let board;
+        let game = new Chess();
 
         document.addEventListener("DOMContentLoaded", function() {
-            viewer = new PgnViewer({
-                boardName: "board",
-                pgn: "",
-                pieceSet: "leipzig",
-                pieceSize: 46,
-                locale: "en"
+            board = Chessboard('board', {
+                draggable: true,
+                position: 'start'
             });
         });
 
         function loadPGN() {
             const pgn = document.getElementById("pgnInput").value;
-            viewer.loadPgn(pgn);
+            game.load_pgn(pgn);
+            board.position(game.fen());
         }
     </script>
 </body>
