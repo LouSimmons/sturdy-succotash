@@ -1,52 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chesstempo PGN Viewer</title>
-    <link href="https://c2a.chesstempo.com/pgnviewer/v2.5/pgnviewerext.vers1.css" rel="stylesheet" crossorigin>
+<link href="https://c2a.chesstempo.com/pgnviewer/v2.5/pgnviewerext.vers1.css" media="all" rel="stylesheet" crossorigin>
+<script defer language="javascript" src="https://c1a.chesstempo.com/pgnviewer/v2.5/pgnviewerext.bundle.vers1.js" crossorigin></script>
+
+<link
+href="https://c1a.chesstempo.com/fonts/MaterialIcons-Regular.woff2"
+rel="stylesheet" crossorigin>
 </head>
 <body>
-    <h1>Chesstempo PGN Viewer</h1>
-
-    <textarea id="pgnInput" rows="10" cols="50" placeholder="Paste your PGN here..."></textarea>
-    <br>
-    <button onclick="loadPGN()">Load PGN</button>
-
-    <div id="board" class="ct-pgn-board" style="width: 100%; max-width: 600px;"></div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const script = document.createElement('script');
-            script.src = "https://c1a.chesstempo.com/pgnviewer/v2.5/pgnviewerext.bundle.vers1.js";
-            script.crossOrigin = "anonymous";
-            script.onload = function() {
-                initializeViewer();
-            };
-            document.body.appendChild(script);
-        });
-
-        let viewer;
-
-        function initializeViewer() {
-            if (window.PgnViewer) {
-                viewer = new PgnViewer({
-                    boardName: "board",
-                    pieceSet: "merida",
-                    pieceSize: 46,
-                    showCoordinates: true,
-                    showNotation: true,
-                    locale: "en"
-                });
-            } else {
-                console.error("PgnViewer object not found. Make sure the script is properly loaded.");
-            }
-        }
-
-        function loadPGN() {
-            const pgn = document.getElementById("pgnInput").value;
-            viewer.loadPgn(pgn);
-        }
-    </script>
+<ct-pgn-viewer>
+PGN HERE
+</ct-pgn-viewer>
 </body>
 </html>
