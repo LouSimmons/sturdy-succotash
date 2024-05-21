@@ -1,74 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chess PGN Viewer</title>
-    <script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js" integrity="sha384-8Vi8VHwn3vjQ9eUHUxex3JSN/NFqUg3QbPyX8kWyb93+8AC/pPWTzj+nHtbC5bxD" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.min.css">
-    <style>
-        #board {
-            width: 400px;
-            margin: 20px auto;
-        }
-        #pgnInput {
-            width: 80%;
-            margin: 20px auto;
-            display: block;
-        }
-        #loadPGN {
-            display: block;
-            margin: 20px auto;
-        }
-    </style>
+    <link href="https://c2a.chesstempo.com/pgnviewer/v2.5/pgnviewerext.vers1.css" media="all" rel="stylesheet" crossorigin>
+<script defer language="javascript" src="https://c1a.chesstempo.com/pgnviewer/v2.5/pgnviewerext.bundle.vers1.js" crossorigin></script>
+
+<link
+href="https://c1a.chesstempo.com/fonts/MaterialIcons-Regular.woff2"
+rel="stylesheet" crossorigin>
 </head>
 <body>
-    <div id="board"></div>
-    <textarea id="pgnInput" rows="4" placeholder="Paste PGN here"></textarea>
-    <button id="loadPGN">Load PGN</button>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM fully loaded and parsed');
-
-            var board = Chessboard('board', {
-                draggable: true,
-                dropOffBoard: 'trash',
-                sparePieces: true
-            });
-
-            console.log('Chessboard initialized', board);
-
-            var game = new Chess();
-
-            document.getElementById('loadPGN').addEventListener('click', function() {
-                var pgn = document.getElementById('pgnInput').value;
-                var loadSuccess = game.load_pgn(pgn);
-
-                if (loadSuccess) {
-                    var moves = game.history();
-                    board.position(game.fen());
-                    playMoves(moves);
-                } else {
-                    alert('Invalid PGN');
-                }
-            });
-
-            function playMoves(moves) {
-                var i = 0;
-                function makeNextMove() {
-                    if (i < moves.length) {
-                        game.move(moves[i]);
-                        board.position(game.fen());
-                        i++;
-                        setTimeout(makeNextMove, 500);
-                    }
-                }
-                makeNextMove();
-            }
-        });
-    </script>
+ <ct-pgn-viewer>
+PGN HERE
+</ct-pgn-viewer>
 </body>
 </html>
