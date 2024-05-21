@@ -29,14 +29,18 @@
         let viewer;
 
         function initializeViewer() {
-            viewer = new PgnViewer({
-                boardName: "board",
-                pieceSet: "merida",
-                pieceSize: 46,
-                showCoordinates: true,
-                showNotation: true,
-                locale: "en"
-            });
+            if (window.PgnViewer) {
+                viewer = new PgnViewer({
+                    boardName: "board",
+                    pieceSet: "merida",
+                    pieceSize: 46,
+                    showCoordinates: true,
+                    showNotation: true,
+                    locale: "en"
+                });
+            } else {
+                console.error("PgnViewer object not found. Make sure the script is properly loaded.");
+            }
         }
 
         function loadPGN() {
