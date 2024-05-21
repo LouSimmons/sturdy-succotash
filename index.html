@@ -9,9 +9,7 @@
 <body>
     <div id="board" style="width: 400px"></div>
     <script>
-        var urlParams = new URLSearchParams(window.location.search);
-        var pgn = urlParams.get('pgn') || 'start';
-        var board = Chessboard('board', pgn);
+        var board = Chessboard('board', 'start')
     </script>
 </body>
 </html>
