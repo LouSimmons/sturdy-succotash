@@ -1,16 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="https://c2a.chesstempo.com/pgnviewer/v2.5/pgnviewerext.vers1.css" media="all" rel="stylesheet" crossorigin>
-<script defer language="javascript" src="https://c1a.chesstempo.com/pgnviewer/v2.5/pgnviewerext.bundle.vers1.js" crossorigin></script>
-
-<link
-href="https://c1a.chesstempo.com/fonts/MaterialIcons-Regular.woff2"
-rel="stylesheet" crossorigin>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chesstempo PGN Viewer</title>
+    <script src="https://chesstempo.com/pgnviewer/pgnviewer.js"></script>
+    <link rel="stylesheet" href="https://chesstempo.com/pgnviewer/pgnviewer.css">
 </head>
 <body>
- <ct-pgn-viewer>
-PGN HERE
-</ct-pgn-viewer>
+    <h1>Chesstempo PGN Viewer</h1>
+
+    <textarea id="pgnInput" rows="10" cols="50" placeholder="Paste your PGN here..."></textarea>
+    <br>
+    <button onclick="loadPGN()">Load PGN</button>
+
+    <div id="board" style="width: 600px;"></div>
+
+    <script>
+        let viewer;
+
+        document.addEventListener("DOMContentLoaded", function() {
+            viewer = new PgnViewer({
+                boardName: "board",
+                pgn: "",
+                pieceSet: "leipzig",
+                pieceSize: 46,
+                locale: "en"
+            });
+        });
+
+        function loadPGN() {
+            const pgn = document.getElementById("pgnInput").value;
+            viewer.loadPgn(pgn);
+        }
+    </script>
 </body>
 </html>
