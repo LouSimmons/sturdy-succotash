@@ -29,39 +29,41 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.13.1/chess.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.min.js"></script>
     <script>
-        var board = Chessboard('board', {
-            draggable: true,
-            dropOffBoard: 'trash',
-            sparePieces: true
-        });
+        document.addEventListener('DOMContentLoaded', function() {
+            var board = Chessboard('board', {
+                draggable: true,
+                dropOffBoard: 'trash',
+                sparePieces: true
+            });
 
-        var game = new Chess();
+            var game = new Chess();
 
-        document.getElementById('loadPGN').addEventListener('click', function() {
-            var pgn = document.getElementById('pgnInput').value;
-            var loadSuccess = game.load_pgn(pgn);
+            document.getElementById('loadPGN').addEventListener('click', function() {
+                var pgn = document.getElementById('pgnInput').value;
+                var loadSuccess = game.load_pgn(pgn);
 
-            if (loadSuccess) {
-                var moves = game.history();
-                board.position(game.fen());
-                playMoves(moves);
-            } else {
-                alert('Invalid PGN');
-            }
-        });
-
-        function playMoves(moves) {
-            var i = 0;
-            function makeNextMove() {
-                if (i < moves.length) {
-                    game.move(moves[i]);
+                if (loadSuccess) {
+                    var moves = game.history();
                     board.position(game.fen());
-                    i++;
-                    setTimeout(makeNextMove, 500);
+                    playMoves(moves);
+                } else {
+                    alert('Invalid PGN');
                 }
+            });
+
+            function playMoves(moves) {
+                var i = 0;
+                function makeNextMove() {
+                    if (i < moves.length) {
+                        game.move(moves[i]);
+                        board.position(game.fen());
+                        i++;
+                        setTimeout(makeNextMove, 500);
+                    }
+                }
+                makeNextMove();
             }
-            makeNextMove();
-        }
+        });
     </script>
 </body>
 </html>
