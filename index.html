@@ -8,6 +8,7 @@
     <style>
         #board {
             width: 400px;
+            height: 400px;
             margin: 20px auto;
         }
         #pgnInput {
@@ -30,11 +31,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Debugging: Log message when DOM content is loaded
+            console.log('DOM fully loaded and parsed');
+
             var board = Chessboard('board', {
                 draggable: true,
                 dropOffBoard: 'trash',
                 sparePieces: true
             });
+
+            // Debugging: Check if board is initialized
+            console.log('Chessboard initialized', board);
 
             var game = new Chess();
 
