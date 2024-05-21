@@ -2,20 +2,16 @@
 <html>
 <head>
     <title>PGN Viewer</title>
-    <!-- Add the CSS for the PGN viewer -->
-    <link rel="stylesheet" href="path/to/lichess-pgn-viewer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chessboard.js/1.0.0/chessboard-1.0.0.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chessboard.js/1.0.0/chessboard-1.0.0.min.js"></script>
 </head>
 <body>
-    <!-- Create a container for the PGN viewer -->
-    <div id="pgn-viewer"></div>
-
-    <!-- Add the JavaScript for the PGN viewer -->
-    <script src="path/to/lichess-pgn-viewer.js"></script>
+    <div id="board" style="width: 400px"></div>
     <script>
-        // Initialize the PGN viewer
-        const lpv = LichessPgnViewer(document.getElementById('pgn-viewer'), {
-            pgn: 'e4 c5 Nf3 d6 e5 Nc6 exd6 Qxd6 Nc3 Nf6',
-        });
+        var urlParams = new URLSearchParams(window.location.search);
+        var pgn = urlParams.get('pgn') || 'start';
+        var board = Chessboard('board', pgn);
     </script>
 </body>
 </html>
